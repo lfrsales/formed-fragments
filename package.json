@@ -19,10 +19,17 @@
     "export": "yo liferay-fragments:export",
     "import": "yo liferay-fragments:import",
     "import:watch": "yo liferay-fragments:import --watch",
-    "preview": "yo liferay-fragments:preview"
+    "preview": "yo liferay-fragments:preview",
+    "lint": "eslint --fix src",
+    "prettier": "prettier --write src/"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
-    "gulp-zip": "^5.0.2"
+    "gulp-zip": "^5.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-liferay": "^20.0.1",
+    "eslint-plugin-jest": "^23.17.1",
+    "eslint-plugin-liferay": "0.0.1",
+    "prettier": "2.0.4"
   }
 }

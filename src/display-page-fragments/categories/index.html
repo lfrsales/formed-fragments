@@ -1,0 +1,17 @@
+<div class="categories-fragment">
+  [#assign currentEntry = (request.getAttribute("LIFERAY_SHARED_LAYOUT_ASSET_ENTRY"))! /]
+
+  [#if !currentEntry?has_content || currentEntry.categories?size == 0]
+    No Categories
+  [#else]
+    [#list currentEntry.categories as category]
+        [#if category.getPath(locale) != "Contributor"]
+            <span class="label label-lg label-secondary">
+                <span class="label-item label-item-expand">
+                    ${category.getName()}
+                </span>
+            </span>
+        [/#if]
+    [/#list]
+  [/#if]
+</div>

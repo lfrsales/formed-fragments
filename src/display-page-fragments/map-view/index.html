@@ -1,0 +1,29 @@
+<div class="map-view">
+	[#assign currentEntry = (request.getAttribute("LIFERAY_SHARED_LAYOUT_ASSET_ENTRY"))! /]
+
+	[#if currentEntry.getAssetRenderer??]
+		[#assign assetRenderer = currentEntry.getAssetRenderer() /]
+
+		[#assign ddmFormValuesReader = assetRenderer.getDDMFormValuesReader() /]
+
+		[#assign ddmFormFieldValues = ddmFormValuesReader.getDDMFormFieldValues("ddm-geolocation") /]
+
+		[#assign coordinatesJSONObjects = [] /]
+	
+		[#list ddmFormFieldValues as ddmFormFieldValue]
+		[#assign
+			value = ddmFormFieldValue.getValue()
+
+			coordinatesJSONObject = value.getString(locale)?eval
+		/]
+		<div>
+			[@liferay_map["map-display"]
+				geolocation=true
+				latitude=coordinatesJSONObject.latitude
+				longitude=coordinatesJSONObject.longitude
+				name="DisplayPageMapView"
+			/]
+	</div>
+	[/#list]
+	[/#if]
+</div>

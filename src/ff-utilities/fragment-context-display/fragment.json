@@ -1,8 +1,8 @@
 {
-  "cssPath": "styles.css",
-  "configurationPath": "configuration.json",
-  "htmlPath": "index.html",
-  "jsPath": "main.js",
-  "name": "Fragment Context Display",
-  "type": "component"
+	"cssPath": "styles.css",
+	"configurationPath": "configuration.json",
+	"htmlPath": "index.html",
+	"jsPath": "main.js",
+	"name": "Fragment Context Display",
+	"type": "component"
 }

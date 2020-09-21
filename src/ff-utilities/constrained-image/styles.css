@@ -1,0 +1,13 @@
+.constrain-fragment-root {
+   position: relative;
+   width: 100%;
+   overflow: hidden;
+}
+
+.constrain-container {
+	position:  absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}

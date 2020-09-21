@@ -1,0 +1,88 @@
+[#macro renderObj object title=""]
+	[#if object?has_content]
+		[#if title?has_content]
+			<h1>${title}</h1>
+		[/#if]
+
+		<table class="table table-bordered [#if title?has_content]mb-3[/#if]">
+			<thead>
+				<tr>
+					<th>Key</th>
+					<th>Value</th>
+				</tr>
+			</thead>
+			<tbody>
+				[#list object?keys?sort as key]
+					[#if object[key]??]
+						<tr>
+							<td style="vertical-align: top; word-break: initial;"><strong>${key}</strong></td>
+
+							<td style="word-break: break-word;">
+								[#if object[key]?is_string || object[key]?is_number]
+									${object[key]}
+								[#elseif object[key]?is_boolean]
+									${object[key]?string('true', 'false')}
+								[#elseif object[key]?is_method]
+									<em>method()</em>
+								[#elseif object[key]?is_sequence]
+									[#list object[key] as item]
+										${item}<br>
+									[/#list]
+								[#elseif object[key]?is_date_like]
+									${object[key]?datetime}
+								[#elseif object[key]?is_hash]
+									[@renderObj object=object[key] /]
+								[#else]
+									<em>Not Able to Render</em>
+								[/#if]
+							</td>
+						</tr>
+					[/#if]
+				[/#list]
+			</tbody>
+		</table>
+	[/#if]
+[/#macro]
+
+<div class="collection-item m-3">
+	<div class="alert alert-info">
+		<p>To use this fragment either place it within a collection fragment to see which attributes are available from <em>request.getAttribute("INFO_LIST_DISPLAY_OBJECT")</em> or place it on a Display Page Template to see which attributes are available from <em>request.getAttribute("LIFERAY_SHARED_LAYOUT_ASSET_ENTRY")</em>.</p>
+		<p class="mb-0">It's important to note that this will only display the attributes of a display page when you view the published display page not when you are editing it.</p>
+	</div>
+
+	[@renderObj object=(request.getAttribute("LIFERAY_SHARED_LAYOUT_ASSET_ENTRY"))! title='request.getAttribute("LIFERAY_SHARED_LAYOUT_ASSET_ENTRY")' /]
+
+	[#assign infoListDisplayObject = (request.getAttribute("INFO_LIST_DISPLAY_OBJECT"))! /]
+
+	[#if infoListDisplayObject?has_content]
+		[@renderObj object=infoListDisplayObject title='request.getAttribute("INFO_LIST_DISPLAY_OBJECT")' /]
+
+		[#assign assetEntryLocalService = serviceLocator.findService("com.liferay.asset.kernel.service.AssetEntryLocalService") /]
+
+		[#assign modelClassName = infoListDisplayObject.modelClassName! /]
+		[#assign resourcePrimKey = infoListDisplayObject.resourcePrimKey! /]
+
+		[#if modelClassName?has_content && resourcePrimKey?has_content]
+			<div class="alert alert-info">
+				[#noparse]
+					<p>In order to use the <em>serviceLocator</em> you must remove it from the "Restricted Classes" list for the FreeMarker Enginer. This can be found in the control panel under "System Settings > Template Engines > FreeMarker Engine".</p>
+					<p>[#assign assetEntryLocalService = serviceLocator.findService("com.liferay.asset.kernel.service.AssetEntryLocalService") /]</p>
+					<p>[#assign modelClassName = infoListDisplayObject.modelClassName! /]<br>[#assign resourcePrimKey = infoListDisplayObject.resourcePrimKey! /]</p>
+					<p class="mb-0">[#assign asset = assetEntryLocalService.getEntry(modelClassName, resourcePrimKey) ]</p>
+				[/#noparse]
+			</div>
+			
+			[@renderObj object=assetEntryLocalService.getEntry(modelClassName, resourcePrimKey)! title="Asset Entry from INFO_LIST_DISPLAY_OBJECT" /]
+		[/#if]
+	[/#if]
+
+	[@renderObj object=(request.getAttribute("INFO_ITEM"))! title='request.getAttribute("INFO_ITEM")' /]
+
+	[@renderObj object=(request.getAttribute("LAYOUT_DISPLAY_PAGE_OBJECT_PROVIDER"))! title='request.getAttribute("LAYOUT_DISPLAY_PAGE_OBJECT_PROVIDER")' /]
+
+	[@renderObj object=(request.getAttribute("INFO_ITEM_FIELD_VALUES_PROVIDER"))! title='request.getAttribute("INFO_ITEM_FIELD_VALUES_PROVIDER")' /]
+
+	[@renderObj object=(request.getAttribute("LAYOUT_DISPLAY_PAGE_PROVIDER"))! title='request.getAttribute("LAYOUT_DISPLAY_PAGE_PROVIDER")' /]
+
+	
+</div>

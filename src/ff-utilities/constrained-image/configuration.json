@@ -1,0 +1,23 @@
+{
+  "fieldSets": [
+	{
+		"fields": [
+			{
+				"dataType": "int",
+				"defaultValue": "3",
+				"description": "Aspect Ratio Height",
+				"label": "Aspect Ratio Height",
+				"name": "height",
+				"type": "text"
+			},
+			{
+				"dataType": "int",
+				"defaultValue": "4",
+				"label": "Aspect Ratio Width",
+				"name": "width",
+				"type": "text"
+			}
+		]
+	}
+  ]
+}

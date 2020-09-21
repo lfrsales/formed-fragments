@@ -3,6 +3,6 @@
   "configurationPath": "configuration.json",
   "htmlPath": "index.html",
   "jsPath": "main.js",
-  "name": "Map View",
+  "name": "Fragment Context Display",
   "type": "component"
 }

@@ -1,4 +1,4 @@
-# Formed Fragments
+# Formed Fragments - Liferay 7.3
 
 This project has been created with [generator-liferay-fragments][1]. You can read
 how to manage this project in the [generator documentation][2].

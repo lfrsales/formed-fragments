@@ -37,7 +37,7 @@ For assets that include geolocation it will display a map of the location.
 
 Use to constrain an image to the ratio of your choosing. This is especially helpful in lists when you want all the images to be the same size. The configuration allows you to define a height and width which will be used to determine the ratio.
 
-![Constrained Image](/images/ConstrainedImage.png)
+![Constrained Image](/images/constrainedImage.png)
 
 #### Flex
 

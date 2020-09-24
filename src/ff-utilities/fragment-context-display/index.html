@@ -1,9 +1,10 @@
 [#assign panelKey = 0 /]
 
 [#macro panel title]
+	[#assign timestamp = .now?long /]
 	[#assign panelKey = panelKey + 1 /]
 
-	[#assign id = "${title?replace('[^A-Za-z0-9]', '-', 'r')}${panelKey}" /]
+	[#assign id = "${title?replace('[^A-Za-z0-9]', '-', 'r')}${panelKey}${timestamp}" /]
 
 	<fieldset class="panel" role="group">
 		<div class="panel-heading" role="presentation">
@@ -123,9 +124,4 @@
 	[@renderObj object=(request.getAttribute("INFO_ITEM_FIELD_VALUES_PROVIDER"))! title='request.getAttribute("INFO_ITEM_FIELD_VALUES_PROVIDER")' /]
 
 	[@renderObj object=(request.getAttribute("LAYOUT_DISPLAY_PAGE_PROVIDER"))! title='request.getAttribute("LAYOUT_DISPLAY_PAGE_PROVIDER")' /]
-
-	[@renderObj object=themeDisplay title='themeDisplay' /]
-
-	[@renderObj object=request title='request' /]
-	
 </div>

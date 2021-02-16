@@ -1,5 +1,7 @@
 # Formed Fragments - Liferay 7.3
 
+> NOTICE: This project has been moved to the [Demo Fragment Collections](https://github.com/lfrsales/demo-fragment-collections) project.
+
 This project has been created with [generator-liferay-fragments][1]. You can read
 how to manage this project in the [generator documentation][2].
 
